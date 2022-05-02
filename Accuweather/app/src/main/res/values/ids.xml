@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="idLLCity" type="id" />
+    <item name="TILCity" type="id" />
+    <item name="idEdtCity" type="id" />
+    <item name="idIVSearch" type="id" />
+</resources>

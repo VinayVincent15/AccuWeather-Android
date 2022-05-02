@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/black">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bg_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:src="@drawable/bg_img"/>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/header"
+                />
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:id="@+id/idLLCity"-->
+<!--                android:layout_marginTop="104dp"-->
+<!--                android:weightSum="5">-->
+
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:id="@+id/TILCity"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:layout_weight="4.5"-->
+<!--                    android:hint="@string/search"-->
+<!--                    android:padding="5dp">-->
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:id="@+id/idEdtCity"-->
+<!--                        android:importantForAutofill="no"-->
+<!--                        android:background="@drawable/shadow"-->
+<!--                        android:inputType="text"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:textSize="14sp" />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+<!--                <ImageView-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:id="@+id/idIVSearch"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/search_icon1"/>-->
+<!--            </LinearLayout>-->
+            <TextView
+                android:id="@+id/idTVCityName"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/citybg"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:paddingHorizontal="20sp"
+                android:text="@string/city_name"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tempinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bg_img"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/temprature_information"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tempinfo"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/line_3"
+                tools:ignore="ImageContrastCheck,ImageContrastCheck"/>
+
+            <ImageView
+                android:id="@+id/idRLHome"
+                android:layout_width="400dp"
+                android:layout_height="686dp"
+                android:layout_below="@id/bg_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:background="@color/black_shade"
+                android:visibility="visible" />
+            <TextView
+                android:id="@+id/idTVCityName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/location"
+                android:textColor="@color/white"
+                android:layout_alignTop="@id/idRLHome"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/idTVDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="35.2dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/dayofweek"
+                android:layout_alignTop="@id/idRLHome"
+                android:textColor="@color/grey_text"
+                android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/idIVIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="63dp"
+                android:layout_alignTop="@id/idRLHome"
+                android:background="@drawable/sunny" />
+            <TextView
+                android:id="@+id/idTVTemp"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="53dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/temprature_main"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginStart="106dp"
+                android:layout_marginTop="53dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="bottom"
+                android:text="@string/celcius"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+            <TextView
+                android:id="@+id/idTVCondition"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="106dp"
+                android:layout_marginTop="77dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="top"
+                android:text="@string/weather_info"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+            <ImageView
+                android:id="@+id/div1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="119dp"
+                app:srcCompat="@drawable/black_line" />
+            <com.jjoe64.graphview.GraphView
+                android:layout_below="@id/div1"
+                android:id="@+id/idGraph"
+                android:layout_centerHorizontal="true"
+                android:layout_width="400dp"
+                android:layout_height="300dp"/>
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/temp_info"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginTop="130dp"
+                android:layout_centerHorizontal="true"/>
+            <ImageView
+                android:id="@+id/div2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/black_line"
+                android:layout_below="@id/idGraph"
+                android:layout_centerHorizontal="true"/>
+            <ImageView
+                android:id="@+id/div3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/black_line"
+                android:layout_below="@id/idGraph"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/footer"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/idRLHome"/>
+        </RelativeLayout>
+    </ScrollView>
+    <ProgressBar
+        android:id="@+id/idPBLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--                Recycler view           -->
+    <!--                    <androidx.recyclerview.widget.RecyclerView-->
+    <!--                        android:id="@+id/idRVWeather"-->
+    <!--                        android:layout_width="match_parent"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_alignTop="@id/div2"-->
+    <!--                        android:layout_marginStart="10dp"-->
+    <!--                        android:layout_marginTop="10dp"-->
+    <!--                        android:layout_marginEnd="10dp"-->
+    <!--                        android:layout_marginBottom="10dp"-->
+    <!--                        android:orientation="horizontal"-->
+    <!--                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
+
+
+
+
+
+    <!--                </RelativeLayout>-->
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:background="@drawable/footer"-->
+    <!--                android:orientation="vertical">-->
+    <!--            </LinearLayout>-->
+    <!--        </LinearLayout>-->
+    <!--    </ScrollView>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="vertical" >-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="440dp"-->
+    <!--                android:background="@drawable/bg_img"-->
+    <!--                android:orientation="vertical"-->
+    <!--                android:textAlignment="center">-->
+
+
+    <!--                <ImageView-->
+    <!--                    android:id="@+id/imageView"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    app:srcCompat="@drawable/header"-->
+    <!--                    />-->
+
+    <!--                <LinearLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:orientation="horizontal"-->
+    <!--                    android:id="@+id/idLLCity"-->
+    <!--                    android:layout_marginTop="104dp"-->
+    <!--                    android:weightSum="5">-->
+
+    <!--                    <com.google.android.material.textfield.TextInputLayout-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="50dp"-->
+    <!--                        android:id="@+id/TILCity"-->
+    <!--                        android:layout_margin="10dp"-->
+    <!--                        android:layout_weight="4.5"-->
+    <!--                        android:hint="@string/search"-->
+    <!--                        android:padding="5dp">-->
+    <!--                        <com.google.android.material.textfield.TextInputEditText-->
+    <!--                            android:layout_width="match_parent"-->
+    <!--                            android:layout_height="match_parent"-->
+    <!--                            android:id="@+id/idEdtCity"-->
+    <!--                            android:importantForAutofill="no"-->
+    <!--                            android:background="@drawable/shadow"-->
+    <!--                            android:inputType="text"-->
+    <!--                            android:singleLine="true"-->
+    <!--                            android:textSize="14sp" />-->
+    <!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="match_parent"-->
+    <!--                        android:layout_weight="0.5"-->
+    <!--                        android:id="@+id/idIVSearch"-->
+    <!--                        android:layout_margin="10dp"-->
+    <!--                        android:layout_gravity="center"-->
+    <!--                        android:src="@drawable/search_icon1"/>-->
+
+
+    <!--                </LinearLayout>-->
+
+    <!--            &lt;!&ndash; _______searchbox_______-->
+    <!--                    <EditText-->
+    <!--                    android:id="@+id/idETCity"-->
+    <!--                    android:layout_width="360dp"-->
+    <!--                    android:layout_height="48dp"-->
+    <!--                    android:layout_gravity="center_horizontal"-->
+    <!--                    android:layout_marginTop="104dp"-->
+    <!--                    android:background="@drawable/shadow"-->
+    <!--                    android:drawableStart="@drawable/search_icon"-->
+    <!--                    android:drawablePadding="5dp"-->
+    <!--                    android:ems="10"-->
+    <!--                    android:hint="@string/search"-->
+    <!--                    android:paddingStart="10dp"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    android:singleLine="true"-->
+    <!--                    android:fontFamily="@font/roboto_medium"-->
+
+    <!--                    tools:ignore="RtlSymmetry,TextFields"-->
+    <!--                    android:importantForAutofill="no" />-->
+    <!--                &ndash;&gt;-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="30dp"-->
+    <!--                    android:paddingHorizontal="20sp"-->
+    <!--                    android:background="@drawable/citybg"-->
+    <!--                    android:text="@string/city_name"-->
+    <!--                    android:textColor="@color/white"-->
+    <!--                    android:fontFamily="@font/roboto_medium"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    android:layout_gravity="center"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:layout_marginTop="64dp"-->
+    <!--                    android:id="@+id/idTVCityName"-->
+    <!--                    />-->
+
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="829dp"-->
+    <!--                android:background="@color/black"-->
+    <!--                android:orientation="vertical">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginTop="40dp"-->
+    <!--                    android:fontFamily="@font/roboto_medium"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:text="@string/temprature_information"-->
+    <!--                    android:textColor="@color/white"-->
+    <!--                    android:textSize="18sp" />-->
+
+    <!--                <ImageView-->
+    <!--                    android:id="@+id/imageView2"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center"-->
+    <!--                    app:srcCompat="@drawable/line_3"-->
+    <!--                    tools:ignore="ImageContrastCheck,ImageContrastCheck" />-->
+
+    <!--                <RelativeLayout-->
+    <!--                    android:layout_width="400dp"-->
+    <!--                    android:layout_height="686dp"-->
+    <!--                    android:layout_gravity="center"-->
+    <!--                    android:layout_marginTop="50dp"-->
+    <!--                    android:id="@+id/idRLHome"-->
+    <!--                    android:background="@color/black_shade"-->
+    <!--                    android:visibility="visible">-->
+
+
+    <!--                    <TextView-->
+    <!--                        android:id="@+id/idTVCityName1"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_alignParentEnd="true"-->
+    <!--                        android:layout_marginTop="11dp"-->
+    <!--                        android:layout_marginEnd="20dp"-->
+    <!--                        android:text="@string/location"-->
+    <!--                        android:textColor="@color/white"-->
+    <!--                        android:textSize="20sp" />-->
+
+    <!--                    <TextView-->
+    <!--                        android:id="@+id/idTVDay"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_alignParentEnd="true"-->
+    <!--                        android:layout_marginTop="35.2dp"-->
+    <!--                        android:layout_marginEnd="20dp"-->
+    <!--                        android:text="@string/dayofweek"-->
+    <!--                        android:textColor="@color/grey_text"-->
+    <!--                        android:textSize="16sp" />-->
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/idIVIcon"-->
+    <!--                        android:layout_width="30dp"-->
+    <!--                        android:layout_height="30dp"-->
+    <!--                        android:layout_marginStart="21dp"-->
+    <!--                        android:layout_marginTop="63dp"-->
+    <!--                        android:background="@drawable/sunny" />-->
+
+
+    <!--                    <TextView-->
+    <!--                        android:id="@+id/idTVTemp"-->
+    <!--                        android:layout_width="50dp"-->
+    <!--                        android:layout_height="50dp"-->
+    <!--                        android:layout_marginStart="56dp"-->
+    <!--                        android:layout_marginTop="53dp"-->
+    <!--                        android:fontFamily="@font/roboto_medium"-->
+    <!--                        android:gravity="center"-->
+    <!--                        android:text="@string/temprature_main"-->
+    <!--                        android:textColor="@color/white"-->
+    <!--                        android:textSize="32sp" />-->
+
+    <!--                    <TextView-->
+    <!--                        android:layout_width="50dp"-->
+    <!--                        android:layout_height="25dp"-->
+    <!--                        android:layout_marginStart="106dp"-->
+    <!--                        android:layout_marginTop="53dp"-->
+    <!--                        android:fontFamily="@font/roboto_medium"-->
+    <!--                        android:gravity="bottom"-->
+    <!--                        android:text="@string/celcius"-->
+    <!--                        android:textColor="@color/white"-->
+    <!--                        android:textSize="11sp" />-->
+
+    <!--                    <TextView-->
+    <!--                        android:id="@+id/idTVCondition"-->
+    <!--                        android:layout_width="50dp"-->
+    <!--                        android:layout_height="25dp"-->
+    <!--                        android:layout_marginStart="106dp"-->
+    <!--                        android:layout_marginTop="77dp"-->
+    <!--                        android:fontFamily="@font/roboto_medium"-->
+    <!--                        android:gravity="top"-->
+    <!--                        android:text="@string/weather_info"-->
+    <!--                        android:textColor="@color/white"-->
+    <!--                        android:textSize="11sp" />-->
+
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/div1"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_marginTop="119dp"-->
+    <!--                        app:srcCompat="@drawable/black_line" />-->
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/imageView4"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        app:srcCompat="@drawable/temp_info"-->
+    <!--                        android:layout_marginTop="130dp"-->
+    <!--                        android:layout_centerHorizontal="true"/>-->
+
+    <!--                    <com.jjoe64.graphview.GraphView-->
+    <!--                        android:layout_below="@id/div1"-->
+    <!--                        android:id="@+id/idGraph"-->
+    <!--                        android:layout_width="match_parent"-->
+    <!--                        android:layout_height="200dp"/>-->
+
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/div2"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_marginTop="325dp"-->
+    <!--                        app:srcCompat="@drawable/black_line" />-->
+
+    <!--&lt;!&ndash;                    <androidx.recyclerview.widget.RecyclerView&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:id="@+id/idRVWeather"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_alignTop="@id/div2"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_marginStart="10dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_marginTop="10dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_marginEnd="10dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_marginBottom="10dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:orientation="horizontal"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />&ndash;&gt;-->
+
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/div3"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_marginTop="452dp"-->
+    <!--                        app:srcCompat="@drawable/black_line" />-->
+
+
+    <!--                    <TextView-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:text="@string/conclusion"-->
+    <!--                        android:textSize="20sp"-->
+    <!--                        android:textColor="@color/white"-->
+    <!--                        android:fontFamily="@font/roboto_medium"-->
+    <!--                        android:layout_marginTop="477dp"-->
+    <!--                        android:layout_marginStart="15dp"-->
+    <!--                        />-->
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/imageView5"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_marginTop="503dp"-->
+    <!--                        app:srcCompat="@drawable/line4" />-->
+
+    <!--                    <TextView-->
+    <!--                        android:id="@+id/idTVConclusion"-->
+    <!--                        android:layout_width="358dp"-->
+    <!--                        android:layout_height="141dp"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_marginTop="515dp"-->
+    <!--                        android:background="@drawable/border"-->
+    <!--                        android:fontFamily="@font/roboto_light"-->
+    <!--                        android:padding="15dp"-->
+    <!--                        android:text="@string/conclusion_data"-->
+    <!--                        android:textColor="@color/white"-->
+    <!--                        android:textSize="16sp" />-->
+
+
+    <!--                </RelativeLayout>-->
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:background="@drawable/footer"-->
+    <!--                android:orientation="vertical">-->
+    <!--            </LinearLayout>-->
+    <!--        </LinearLayout>-->
+    <!--    </ScrollView>-->

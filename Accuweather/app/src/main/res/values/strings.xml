@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Accuweather</string>
+    <string name="search">Search</string>
+    <string name="temprature_information">Temprature Information</string>
+    <string name="temprature_main">--.-</string>
+    <string name="celcius">°C</string>
+    <string name="weather_info">-</string>
+    <string name="location">City Name</string>
+    <string name="dayofweek">Saturday</string>
+    <string name="conclusion">Conclusion</string>
+    <string name="conclusion_data">Not enough data to compare.</string>
+    <string name="city_name">City Name</string>
+    <string name="todo">TODO</string>
+    <string name="start">Start Monitoring</string>
+    <string name="end">Stop Monitoring</string>
+    <string name="copyright">©2021 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved.</string>
+    <string name="terms">Terms of Use | Privacy Policy | Cookie Policy | TAG Disclosure</string>
+</resources>

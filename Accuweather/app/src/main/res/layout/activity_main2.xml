@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2"
+    android:orientation="vertical"
+    android:background="@color/black">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bg_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:src="@drawable/bg_img" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/header"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/idIVSearch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="140dp"
+                android:background="@drawable/button_click"
+                android:padding="10dp"
+                android:text="@string/start"
+                android:textColor="@color/search_bg"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/idTVCityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/idIVSearch"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/citybg"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:hint="@string/city_name"
+                android:paddingHorizontal="20sp"
+                android:paddingVertical="5sp"
+                android:textColor="@color/search_bg"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tempinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bg_img"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/temprature_information"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tempinfo"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/line_3"
+                tools:ignore="ImageContrastCheck,ImageContrastCheck"/>
+
+            <ImageView
+                android:id="@+id/idRLHome"
+                android:layout_width="400dp"
+                android:layout_height="686dp"
+                android:layout_below="@id/bg_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:background="@color/black_shade"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bg_img"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="left"
+                android:layout_alignTop="@id/idRLHome"
+                android:text="Local Temperature"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/idIVIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="63dp"
+                android:src="@drawable/sunny" />
+
+            <TextView
+                android:id="@+id/idTVTemp"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="53dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_vertical"
+                android:text="@string/temprature_main"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginStart="126dp"
+                android:layout_marginTop="53dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="bottom"
+                android:text="@string/celcius"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/idTVCondition"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginStart="126dp"
+                android:layout_marginTop="77dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="top"
+                android:text="@string/weather_info"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bg_img"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Battery Temperature"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/idTVBTemp"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginStart="286dp"
+                android:layout_marginTop="53dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_vertical"
+                android:text="@string/temprature_main"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginStart="356dp"
+                android:layout_marginTop="53dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="bottom"
+                android:text="@string/celcius"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:id="@+id/div1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="119dp"
+                app:srcCompat="@drawable/black_line" />
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/idGraph"
+                android:layout_width="400dp"
+                android:layout_height="300dp"
+                android:layout_below="@id/div1"
+                android:layout_centerHorizontal="true" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/temp_info"
+                android:layout_alignTop="@id/idRLHome"
+                android:layout_marginTop="130dp"
+                android:layout_centerHorizontal="true"/>
+            <ImageView
+                android:id="@+id/div2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/black_line"
+                android:layout_below="@id/idGraph"
+                android:layout_centerHorizontal="true"/>
+            <ImageView
+                android:id="@+id/div3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/black_line"
+                android:layout_below="@id/idGraph"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRVWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/div2"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/idRLHome"
+                android:background="@color/white"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/footer_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/logo" />
+
+                <ImageView
+                    android:id="@+id/footer_line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/footer_logo"
+                    android:src="@drawable/line_3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/footer_line1"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/copyright"
+                    android:textAlignment="center"
+                    android:textColor="#949494"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/footer_line1"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/terms"
+                    android:textAlignment="center"
+                    android:textColor="#808080"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
+
+
+
+
+
+
+
+
