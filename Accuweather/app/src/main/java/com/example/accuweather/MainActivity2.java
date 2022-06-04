@@ -1,7 +1,15 @@
 package com.example.accuweather;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.location.LocationListenerCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.OneTimeWorkRequest;
+
 import android.Manifest;
-import android.app.ActivityManager;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +20,7 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationRequest;
 import android.os.BatteryManager;
@@ -21,21 +30,18 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.work.OneTimeWorkRequest;
-
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -46,6 +52,7 @@ import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.textfield.TextInputEditText;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -57,38 +64,30 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity2 extends AppCompatActivity {
-     ImageView homeRL;
-     TextView cityNameTV, temperatureTV, conditionTV, btempTV;
-     RecyclerView weatherRV;
-     TextInputEditText cityEdt;
-     Button searchIV;
-     ImageView iconIV;
-     ArrayList<WeatherRVModal> weatherRVModalArrayList;
-     FusedLocationProviderClient fusedLocationProviderClient;
-     WeatherRVAdapter weatherRVAdapter;
-     LocationManager locationManager;
-     static final int PERMISSION_CODE = 1;
-     String cityName;
-     mBatInfoReceiver myBatInfoReceiver;
-     boolean button_state = false;
-     LocationSettingsRequest.Builder builder;
-     final int Request_check_code = 8989;
-     static MainActivity2 mainActivity2;
+    private ImageView homeRL;
+    private TextView cityNameTV, temperatureTV, conditionTV, btempTV;
+    private RecyclerView weatherRV;
+    private TextInputEditText cityEdt;
+    private Button searchIV;
+    private ImageView iconIV;
+    private ArrayList<WeatherRVModal> weatherRVModalArrayList;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private WeatherRVAdapter weatherRVAdapter;
+    private LocationManager locationManager;
+    private static final int PERMISSION_CODE = 1;
+    private String cityName;
+    private mBatInfoReceiver myBatInfoReceiver;
+    private boolean button_state = false;
+    private LocationSettingsRequest.Builder builder;
+    private final int Request_check_code = 8989;
 
-
-
-    public void setCityName(String cityName) {
-        cityNameTV.setText(cityName);
-    }
-
-    public void buttonClick(){
-        getLocation();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +102,6 @@ public class MainActivity2 extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_main2);
 
-
-        mainActivity2 = this;
         GraphView graph = findViewById(R.id.idGraph);
         btempTV = findViewById(R.id.idTVBTemp);
         homeRL = findViewById(R.id.idRLHome);
@@ -164,42 +161,24 @@ public class MainActivity2 extends AppCompatActivity {
         searchIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = getApplicationContext();
                 if (!button_state) {
                     searchIV.setBackground(getDrawable(R.drawable.button_click_pressed));
                     searchIV.setText(getString(R.string.end));
-
                     if (ActivityCompat.checkSelfPermission(MainActivity2.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        //getLocation();
-
-
-                        if(!tempServiceRunning()){ //foreground service
-                            Intent serviceIntent = new Intent(MainActivity2.this,HourlyTemperature.class);
-                            context.startForegroundService(serviceIntent);
-                        }
-
+                        getLocation();
                     } else {
                         ActivityCompat.requestPermissions(MainActivity2.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
                     }
-
                     button_state=true;
                 }
                 else{
                     createAlert();
-                        Intent serviceIntent = new Intent(MainActivity2.this,HourlyTemperature.class);
-                        context.startForegroundService(serviceIntent);
                 }
             }
         });
-
-
     }
 
-    public static MainActivity2 getInstance(){
-        return mainActivity2;
-    }
-
-    public void turnOnGPS(){
+    private void turnOnGPS(){
         com.google.android.gms.location.LocationRequest request1 = new com.google.android.gms.location.LocationRequest()
                 .setFastestInterval(1500)
                 .setInterval(3000)
@@ -237,7 +216,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
-    public void createAlert(){
+    private void createAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -262,11 +241,10 @@ public class MainActivity2 extends AppCompatActivity {
         builder.show();
     }
 
-    public void getLocation() {
+    private void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        Log.d("GET LOCATION : ", "FOREGROUND SERVICE TEST");
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
             public void onComplete(@NonNull Task<Location> task) {
@@ -314,7 +292,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
-    public void getWeatherInfo(String cityName){
+    private void getWeatherInfo(String cityName){
         String url = "http://api.weatherapi.com/v1/current.json?key=9d5edf8b10e249b4a2f193014221304&q="+cityName+"&aqi=no";
         cityNameTV.setText(cityName);
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity2.this);
@@ -346,20 +324,11 @@ public class MainActivity2 extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public static String batteryTemperature(Context context) {
+    public static String batteryTemperature(Context context)
+    {
         Intent intent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         float  temp   = ((float) intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE,0)) / 10;
         return String.valueOf(temp);
-    }
-
-    public boolean tempServiceRunning(){
-        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for(ActivityManager.RunningServiceInfo service: activityManager.getRunningServices(Integer.MAX_VALUE)){
-            if(HourlyTemperature.class.getName().equals(service.service.getClassName())){
-                return true;
-            }
-        }
-        return false;
     }
 
 //    private void inserttempdata() {
