@@ -9,36 +9,27 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
 import java.util.Locale;
 
-class NewClass extends AppCompatActivity{
-    @Override
-    public boolean stopService(Intent name) {
-        Intent prevInt=getIntent();
-        return super.stopService(prevInt);
-    }
-}
+
 
 public class HourlyTemperature extends Service{
-
     boolean state = true;
+    boolean threadState = true;
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         if(state){
             state = false;
             new Thread(
                     () -> {
-                        while (true) {
+                        while (threadState) {
                             Log.d("--------service test------", "run: foreground service test");
-                            //obj.buttonClick();
-
+                            MainActivity2.getInstance().getLocation();
                             try {
-                                MainActivity2.getInstance().getLocation();
-                                Thread.sleep(5000);
+                                Thread.sleep(10000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -76,16 +67,16 @@ public class HourlyTemperature extends Service{
 //            startForeground(notificationId,notification.build());
         }
         else {
-            Log.d("Finding lawda", "onStartCommand: Gussing herre lawda  mila");
+            Log.d("Foreground service else condition", "onStartCommand: FOREGROUND service destroyed");
             stopForeground(true);
+            stopSelf();
             stopSelfResult(startId);
             state = true;
-            new NewClass().stopService(new Intent(HourlyTemperature.this,MainActivity2.class));
+            threadState = false;
         }
 
         return super.onStartCommand(intent, flags, startId);
     }
-
 
 
     public int createID(){

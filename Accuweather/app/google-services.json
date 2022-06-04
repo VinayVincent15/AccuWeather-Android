@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "921081127577",
+    "firebase_url": "https://accuweather-c294b-default-rtdb.firebaseio.com",
     "project_id": "accuweather-c294b",
     "storage_bucket": "accuweather-c294b.appspot.com"
   },

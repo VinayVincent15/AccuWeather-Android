@@ -1,6 +1,7 @@
 package com.example.accuweather;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,7 +15,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.location.LocationRequest;
-import android.os.BatteryManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +47,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -80,16 +81,11 @@ public class MainActivity2 extends AppCompatActivity {
      final int Request_check_code = 8989;
      static MainActivity2 mainActivity2;
 
+    //private FirebaseFirestore db = FirebaseFirestore.getInstance();         //Connection to firestore
 
 
-    public void setCityName(String cityName) {
-        cityNameTV.setText(cityName);
-    }
 
-    public void buttonClick(){
-        getLocation();
-    }
-
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,36 +155,31 @@ public class MainActivity2 extends AppCompatActivity {
         battery.setColor(Color.BLUE);
 
 
+        //Context context = getApplicationContext();
+        Intent serviceIntent = new Intent(MainActivity2.this,HourlyTemperature.class);
+        searchIV.setOnClickListener(view -> {
+            if (!button_state) {
+                searchIV.setBackground(getDrawable(R.drawable.button_click_pressed));
+                searchIV.setText(getString(R.string.end));
+
+                if (ActivityCompat.checkSelfPermission(MainActivity2.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    //getLocation();
 
 
-        searchIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Context context = getApplicationContext();
-                if (!button_state) {
-                    searchIV.setBackground(getDrawable(R.drawable.button_click_pressed));
-                    searchIV.setText(getString(R.string.end));
-
-                    if (ActivityCompat.checkSelfPermission(MainActivity2.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        //getLocation();
-
-
-                        if(!tempServiceRunning()){ //foreground service
-                            Intent serviceIntent = new Intent(MainActivity2.this,HourlyTemperature.class);
-                            context.startForegroundService(serviceIntent);
-                        }
-
-                    } else {
-                        ActivityCompat.requestPermissions(MainActivity2.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+                    if(!tempServiceRunning()){ //foreground service
+                        startForegroundService(serviceIntent);
                     }
 
-                    button_state=true;
+                } else {
+                    ActivityCompat.requestPermissions(MainActivity2.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
                 }
-                else{
-                    createAlert();
-                        Intent serviceIntent = new Intent(MainActivity2.this,HourlyTemperature.class);
-                        context.startForegroundService(serviceIntent);
-                }
+
+                button_state=true;
+            }
+            else{
+                createAlert();
+                button_state=false;
+                stopService(serviceIntent);
             }
         });
 
@@ -344,12 +335,6 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
-    }
-
-    public static String batteryTemperature(Context context) {
-        Intent intent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        float  temp   = ((float) intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE,0)) / 10;
-        return String.valueOf(temp);
     }
 
     public boolean tempServiceRunning(){
